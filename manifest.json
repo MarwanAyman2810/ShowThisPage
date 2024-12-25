@@ -1,0 +1,32 @@
+{
+  "name": "ShowThisPage",
+  "author": "MarwanAyman",
+  "version": "1.0",
+  "description": "Disable overlay popups on sites",
+  "manifest_version": 3,
+
+  "action": {
+    "default_icon": {
+      "16": "icons/icon.png",
+      "48": "icons/icon.png",
+      "128": "icons/icon.png"
+    },
+    "default_popup": "popup.html"
+  },
+
+  
+  "permissions": [
+    "activeTab",
+    "scripting"
+  ],
+  
+  
+  "host_permissions": [
+    "<all_urls>"
+  ],
+
+  
+  "background": {
+    "service_worker": "background.js"
+  }
+}
