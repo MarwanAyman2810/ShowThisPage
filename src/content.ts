@@ -1,5 +1,3 @@
-
-
 ((): void => {
   console.log('[Overlay Blocker] Content script started.');
 
@@ -12,6 +10,7 @@
 
   let foundPopup: boolean = false;
 
+  // **1. Hide Direct Child <div> Elements with Specific Styles**
   allDivs.forEach((div: HTMLDivElement) => {
     const style: CSSStyleDeclaration = window.getComputedStyle(div);
     const position: string = style.position;
@@ -27,6 +26,7 @@
     }
   });
 
+  // **2. Hide Login Overlay Containers Based on Specific Selectors**
   const likelyLoginOverlayElementSelectors: string[] = [
     '.q-zIndex--blocking_wall',
     '.puppeteer_test_login_button_google',
@@ -37,6 +37,11 @@
     .map(selector => document.querySelector(selector))
     .filter((element): element is Element => element !== null);
 
+  /**
+   * Finds the nearest common ancestor HTMLElement for a list of elements.
+   * @param elements Array of DOM elements.
+   * @returns The common ancestor HTMLElement or null if none found.
+   */
   function findCommonAncestor(elements: Element[]): HTMLElement | null {
     if (elements.length === 0) {
       return null;
@@ -86,18 +91,24 @@
     console.log('[Overlay Blocker] Hiding login overlay container:', data.loginOverlayContainer);
   }
 
+  // **3. Fallback Method: Remove the Last <div> in <body>**
+  if (!foundPopup) {
+    const bodyDivs: HTMLCollectionOf<HTMLDivElement> = document.body.getElementsByTagName('div');
+    const totalDivs = bodyDivs.length;
+
+    if (totalDivs > 0) {
+      const lastDiv: HTMLDivElement = bodyDivs[totalDivs - 1];
+      lastDiv.remove();
+      foundPopup = true;
+      console.log('[Overlay Blocker] Fallback: Removed the last <div> in <body> as a popup.');
+    } else {
+      console.log('[Overlay Blocker] Fallback: No <div> elements found in <body> to remove.');
+    }
+  }
+
   if (!foundPopup) {
     console.log('[Overlay Blocker] No popups found.');
   }
 
-  function handleMutations(mutations: MutationRecord[]) {
-    mutations.forEach(() => {
-    });
-  }
-
-  const observer = new MutationObserver(handleMutations);
-
-  observer.observe(document.body, { childList: true, subtree: true });
-
-  console.log('[Overlay Blocker] MutationObserver initialized.');
+  console.log('[Overlay Blocker] Content script execution completed.');
 })();

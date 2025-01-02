@@ -6,24 +6,17 @@
       "outDir": "./dist",                       // Output directory for compiled JS files
       "esModuleInterop": true,                  // Compatibility with CommonJS modules
       "forceConsistentCasingInFileNames": true, // Consistent file naming
-      "skipLibCheck": true,                     // Skip type checking of declaration files
       "types": ["chrome"],                      // Include Chrome type definitions
       "sourceMap": true                         // Enable source maps for debugging
     },
     "include": [
- "content.ts",
+ "src/content.ts",
+ "src/popup.ts"
  
- 
- 
- 
- "popup.ts",
- 
-  
- ], 
+ ],
   "exclude": [
     "node_modules",
     "dist",
     "**/*.spec.ts" 
   ]                  
   }
-  

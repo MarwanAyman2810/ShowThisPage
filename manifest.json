@@ -11,7 +11,7 @@
       "48": "icons/icon.png",
       "128": "icons/icon.png"
     },
-    "default_popup": "popup.html"
+    "default_popup": "fe/popup.html"
   },
 
   "permissions": [
@@ -23,8 +23,9 @@
     "<all_urls>"
   ],
 
-  
-
+  "background": {
+    "service_worker": "background.js"
+  },
   
 
   "icons": {
