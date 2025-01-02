@@ -1,0 +1,24 @@
+{
+  "name": "showthispage",
+  "version": "1.0.0",
+  "description": "extension to bypass paywalls, login to continue popup,adblocker detected turn off to view, etc......",
+  "main": "background.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MarwanAyman2810/ShowThisPage.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MarwanAyman2810/ShowThisPage/issues"
+  },
+  "homepage": "https://github.com/MarwanAyman2810/ShowThisPage#readme",
+  "devDependencies": {
+    "@types/chrome": "^0.0.287",
+    "typescript": "^5.7.2"
+  }
+}
