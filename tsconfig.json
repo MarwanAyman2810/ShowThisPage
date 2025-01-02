@@ -10,16 +10,20 @@
       "types": ["chrome"],                      // Include Chrome type definitions
       "sourceMap": true                         // Enable source maps for debugging
     },
-    "include": ["background.js",
+    "include": [
  "content.ts",
- "manifest.json",
- "notes.js",
- "package-lock.json",
- "package.json",
- "popup.html",
+ 
+ 
+ 
+ 
  "popup.ts",
- "README.md",
-  "tsconfig.json"
- ]                    // Include all TypeScript files in src/
+ 
+  
+ ], 
+  "exclude": [
+    "node_modules",
+    "dist",
+    "**/*.spec.ts" 
+  ]                  
   }
   

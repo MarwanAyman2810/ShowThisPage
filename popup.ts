@@ -1,16 +1,13 @@
 // src/popup.ts
 
 document.addEventListener('DOMContentLoaded', () => {
-  const blockBtn: HTMLElement | null = document.getElementById('blockBtn');
+  
+  const blockBtn: HTMLElement = document.getElementById('blockBtn') as HTMLElement;
 
-  if (!blockBtn) {
-    console.error('[Overlay Blocker] Block button not found in popup.');
-    return;
-  }
-
+  
   blockBtn.addEventListener('click', async () => {
     try {
-      // Query the active tab in the current window
+      
       const tabs: chrome.tabs.Tab[] = await chrome.tabs.query({ active: true, currentWindow: true });
       const tab: chrome.tabs.Tab | undefined = tabs[0];
 
@@ -19,10 +16,10 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      // Inject the compiled "content.js" into the active tab
+      
       await chrome.scripting.executeScript({
         target: { tabId: tab.id },
-        files: ['dist/content.js'] // Path to the compiled JavaScript file
+        files: ['dist/content.js']
       });
 
       console.log('[Overlay Blocker] Overlay blocker injected into the active tab.');
